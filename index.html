@@ -114,7 +114,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        /* Countdown section - PC optimized */
+        /* Countdown section */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -181,7 +181,7 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Schedule section */
+        /* Schedule section - UPDATED: removed Buổi column */
         .schedule-section {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
@@ -222,7 +222,7 @@
             margin-left: auto;
         }
 
-        /* Table styling - optimized for both devices */
+        /* Table styling - WITHOUT Buổi column */
         .table-responsive {
             overflow-x: auto;
             border-radius: 20px;
@@ -250,10 +250,9 @@
             width: 100%;
             border-collapse: collapse;
             color: #fff;
-            min-width: 650px;
+            min-width: 550px; /* Reduced since we removed a column */
         }
 
-        /* PC table styling */
         @media (min-width: 1024px) {
             table {
                 min-width: 0;
@@ -296,7 +295,8 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .buoi-badge {
+        /* New style for session badge integrated into first column */
+        .session-badge {
             background: rgba(255, 255, 255, 0.15);
             padding: 6px 14px;
             border-radius: 40px;
@@ -307,9 +307,10 @@
             gap: 6px;
             white-space: nowrap;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-right: 8px;
         }
 
-        .buoi-badge i {
+        .session-badge i {
             font-size: 0.8rem;
             opacity: 0.9;
         }
@@ -319,11 +320,12 @@
             line-height: 1.4;
         }
 
-        .mon-thi small {
+        .mon-thi .exam-details {
             display: block;
             font-size: 0.8rem;
             opacity: 0.8;
             margin-top: 4px;
+            color: #e0f2fe;
         }
 
         .time-cell {
@@ -403,9 +405,10 @@
                 font-size: 0.85rem;
             }
 
-            .buoi-badge {
+            .session-badge {
                 padding: 4px 10px;
                 font-size: 0.75rem;
+                margin-right: 4px;
             }
 
             .note-section {
@@ -414,7 +417,6 @@
             }
         }
 
-        /* Small phones */
         @media (max-width: 480px) {
             .countdown-item {
                 min-width: calc(50% - 20px);
@@ -444,14 +446,8 @@
                 padding: 10px 6px;
                 font-size: 0.8rem;
             }
-
-            .mon-thi {
-                max-width: 150px;
-                white-space: normal;
-            }
         }
 
-        /* Landscape mode optimization */
         @media (max-height: 600px) and (orientation: landscape) {
             .container {
                 padding: 15px;
@@ -466,7 +462,6 @@
             }
         }
 
-        /* Animation for countdown */
         @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.8; }
@@ -477,7 +472,6 @@
             animation: pulse 2s infinite ease-in-out;
         }
 
-        /* Print styles */
         @media print {
             body {
                 background: white;
@@ -527,7 +521,7 @@
             </div>
         </div>
 
-        <!-- Exam Schedule Table -->
+        <!-- Exam Schedule Table - WITHOUT Buổi column -->
         <div class="schedule-section">
             <div class="schedule-header">
                 <h2>
@@ -542,8 +536,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Buổi</th>
-                            <th>Môn thi</th>
+                            <th>Môn thi / Nội dung</th>
                             <th>Thời gian</th>
                             <th>Bắt đầu</th>
                             <th>Kết thúc</th>
@@ -552,20 +545,20 @@
                     <tbody>
                         <!-- Orientation and procedures -->
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-sun"></i> Sáng 06/06</span></td>
-                            <td class="mon-thi">
-                                Họp cán bộ coi thi
-                                <small>7:30 - Họp tại Hội đồng</small>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-sun"></i> Sáng 06/06</span>
+                                <span class="mon-thi">Họp cán bộ coi thi</span>
+                                <span class="exam-details">7:30 - Họp tại Hội đồng coi thi/Điểm thi</span>
                             </td>
                             <td>—</td>
-                            <td>—</td>
+                            <td>7:30</td>
                             <td>—</td>
                         </tr>
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-sun"></i> Sáng 06/06</span></td>
-                            <td class="mon-thi">
-                                Thí sinh làm thủ tục
-                                <small>Đính chính sai sót, nghe phổ biến quy chế</small>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-sun"></i> Sáng 06/06</span>
+                                <span class="mon-thi">Thí sinh làm thủ tục</span>
+                                <span class="exam-details">Đính chính sai sót, nghe phổ biến Quy chế thi, Lịch thi</span>
                             </td>
                             <td>—</td>
                             <td>9:00</td>
@@ -573,42 +566,48 @@
                         </tr>
                         <!-- Main exams -->
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-sun"></i> Sáng 07/06</span></td>
-                            <td class="mon-thi">Ngữ văn</td>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-sun"></i> Sáng 07/06</span>
+                                <span class="mon-thi">Ngữ văn</span>
+                            </td>
                             <td class="time-cell">120 phút</td>
                             <td>8:00</td>
                             <td>10:00</td>
                         </tr>
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-moon"></i> Chiều 07/06</span></td>
-                            <td class="mon-thi">Ngoại ngữ</td>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-moon"></i> Chiều 07/06</span>
+                                <span class="mon-thi">Ngoại ngữ</span>
+                            </td>
                             <td class="time-cell">60 phút</td>
                             <td>14:00</td>
                             <td>15:00</td>
                         </tr>
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-sun"></i> Sáng 08/06</span></td>
-                            <td class="mon-thi">Toán</td>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-sun"></i> Sáng 08/06</span>
+                                <span class="mon-thi">Toán</span>
+                            </td>
                             <td class="time-cell">120 phút</td>
                             <td>8:00</td>
                             <td>10:00</td>
                         </tr>
                         <!-- Specialized subjects -->
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-sun"></i> Sáng 09/06</span></td>
-                            <td class="mon-thi">
-                                Chuyên: Ngữ văn, Toán (chuyên Toán/Tin), Ngoại ngữ khác
-                                <small>Thí sinh thi chuyên</small>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-sun"></i> Sáng 09/06</span>
+                                <span class="mon-thi">Ngữ văn, Toán <span style="opacity:0.7; font-size:0.9rem;">(dành cho thí sinh thi vào lớp chuyên Toán, chuyên Tin học)</span>, Ngoại ngữ khác</span>
+                                <span class="exam-details">Thi môn chuyên</span>
                             </td>
                             <td class="time-cell">150 phút</td>
                             <td>8:00</td>
                             <td>10:30</td>
                         </tr>
                         <tr>
-                            <td><span class="buoi-badge"><i class="fas fa-moon"></i> Chiều 09/06</span></td>
-                            <td class="mon-thi">
-                                Chuyên: KHTN (Lý, Hóa, Sinh), Lịch sử & Địa lí (Sử, Địa), Tiếng Anh
-                                <small>Thí sinh thi chuyên</small>
+                            <td>
+                                <span class="session-badge"><i class="fas fa-moon"></i> Chiều 09/06</span>
+                                <span class="mon-thi">Khoa học tự nhiên <span style="opacity:0.7; font-size:0.9rem;">(dành cho thí sinh thi vào lớp chuyên Vật lí, chuyên Hóa học, chuyên Sinh học)</span>, Lịch sử và Địa lí <span style="opacity:0.7; font-size:0.9rem;">(dành cho thí sinh thi vào lớp chuyên Lịch sử, chuyên Địa lí)</span>, Tiếng Anh</span>
+                                <span class="exam-details">Thi môn chuyên</span>
                             </td>
                             <td class="time-cell">150 phút</td>
                             <td>14:00</td>
@@ -620,7 +619,7 @@
 
             <div class="note-section">
                 <i class="fas fa-info-circle"></i>
-                <span><strong>Lưu ý:</strong> Thí sinh thi chuyên: Ngày 09/6/2025 - Sáng (Văn, Toán chuyên, Ngoại ngữ khác) - Chiều (KHTN, Sử-Địa, Tiếng Anh)</span>
+                <span><strong>Lưu ý:</strong> Ngày 09/6/2025 dành cho thí sinh thi chuyên. Buổi sáng: Ngữ văn, Toán (chuyên Toán/Tin), Ngoại ngữ khác. Buổi chiều: KHTN (chuyên Lý/Hóa/Sinh), Lịch sử & Địa lí (chuyên Sử/Địa), Tiếng Anh.</span>
             </div>
         </div>
     </div>
